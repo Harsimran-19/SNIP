@@ -1,39 +1,59 @@
 .siderContent{
-    padding-top: 20px;
-    padding-right: 90px;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
     height:85vh;
-    align-items: end;
-}
-
-.details {
-    display: flex;
-    padding: 10px;
-    gap:14px;
-    justify-content: start;
     align-items: center;
-    text-decoration: none !important;
+    padding-left: 10px;
 }
-
+.Smalltitle{
+    font-size: 3.5rem;
+    background-clip:text;
+    background-image: linear-gradient(90deg, #55e6ff,#ff79ca);
+      background-size: 100%;
+      -webkit-text-fill-color: transparent; 
+      -moz-text-fill-color: transparent;
+  }
+.details {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+    height: 100px;
+}
+.ItemContainer{
+    background-color: #222b34;
+  border-radius: 25px;
+  width:240px;
+  padding-left: 20px;
+  height: 280px;
+  margin-top: 30px;
+  padding-top: 20px;
+  background-color: white;
+  -webkit-box-shadow: 2px 2px 33px -3px rgba(0,0,0,0.22);
+-moz-box-shadow: 2px 2px 33px -3px rgba(0,0,0,0.22);
+box-shadow: 2px 2px 33px -3px rgba(0,0,0,0.22);
+  overflow: hidden;
+}
 .menuItems {
     display: flex;
     justify-content: start;
-    gap: 14px;
-    margin-top: 20px;
+    gap: 25px;
+    margin-top: 30px;
     align-items: center;
-    font-weight: 600;
+    font-weight:bold;
     font-size: 20px;
+    width: 80%;
+    color: rgb(21,21,21);
     padding:10px;
     border-radius: 1000px;
-    color: white !important;
     text-decoration: none !important;
 }
 
 .menuItems:hover{
     cursor:pointer;
-    background-color: #282828;
+    background-color: #e2e2e2;
 }
 
 .profile{
@@ -41,7 +61,37 @@
     flex-direction: column;
     gap: 5px;
 }
-
+.sideProfile{
+    background-color: #222b34;
+  border-radius: 25px;
+  width:250px;
+  padding-left: 10px;
+  height: 100px;
+  margin-top: 45px;
+  /* padding-top: 20px; */
+  font-weight: bold;
+  background-color: white;
+  -webkit-box-shadow: 2px 2px 33px -3px rgba(0,0,0,0.22);
+-moz-box-shadow: 2px 2px 33px -3px rgba(0,0,0,0.22);
+box-shadow: 2px 2px 33px -3px rgba(0,0,0,0.22);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Dp{
+  border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.infoContainer{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 
 

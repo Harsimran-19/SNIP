@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Profile.css';
 import { defaultImgs } from "../defaultimgs";
-import TweetInFeed from "../components/TweetInFeed";
+import Feed from "../components/Feed";
 import { useMoralis } from "react-moralis";
 
 
@@ -26,11 +26,11 @@ const Profile = () => {
       </div>
       <div className="profileTabs">
           <div className="profileTab">
-          Your Tweets
+          Your Posts
           </div>
       </div>
     </div>
-    <TweetInFeed profile={true}></TweetInFeed>
+    <Feed profile={true}></Feed>
     </>
   );
 };

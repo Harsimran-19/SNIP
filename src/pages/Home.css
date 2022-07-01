@@ -1,27 +1,26 @@
 .pageIdentify{
     max-width: 100%;
     padding:20px;
-    background-color: #141d26ed;
+    background-color: rgb(248, 252, 255);
     position: sticky;
     top: 0px;
-    color: white;
     font-weight: bold;
     font-size: 20px;
     z-index: 999;
 }
 
-.mainContent {
+/* .mainContent {
     
-}
+} */
 
-.profileTweet {
+.profilepost {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgb(63, 63, 63) ;
     padding: 20px;
 }
 
-.tweetBox {
+.postBox {
     width:89%;
 }
 
@@ -31,29 +30,48 @@
     height: 50px;
 }
 
-.imgOrTweet {
+.imgOrPost {
     display: flex;
     justify-content: space-between;
     width: 95%;
     align-items: center;
 }
 
-.tweet {
+.post {
     background-color: #1DA1F2;
     padding: 10px 20px;
+    margin-top: 10px;
     border-radius: 1000px;
     color: white;
+    width: 70px;
     font-weight: 600;
     display: flex;
     justify-content: center;
     gap: 5px;
 }
-
-.tweet:hover {
+.matic{
+    background-color: #09d2fa;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 1000px;
+    color: white;
+    width: 70px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+.matic:hover{
+    background-color: #ff4ff0;
     cursor: pointer;
 }
 
-.tweetOptions {
+.post:hover {
+    background-color: #7ee8fa;
+    cursor: pointer;
+}
+
+.postOptions {
     display: flex;
     justify-content: end;
     gap: 10px;
@@ -69,7 +87,7 @@
     background-color: #282828;
 }
 
-.tweetImg {
+.postImg {
     width: 98%;
     border-radius: 10px;
 }

@@ -42,8 +42,8 @@ const App = () => {
       </div>
       ) : (
         <div className="loginPage">
-          <Icon fill="#ffffff" size={40} svg="twitter" />
-          <ConnectButton />
+          <h1 className="title">Snip</h1>
+          <ConnectButton  />
         </div>
 
       )}

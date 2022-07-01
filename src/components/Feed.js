@@ -1,27 +1,25 @@
 import React from "react";
-import "./TweetInFeed.css";
-import golf from "../images/golf.png";
-import canoe from "../images/canoe.png";
+import "./Feed.css";
 import { defaultImgs } from "../defaultimgs";
 import { Icon } from "web3uikit";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 
-const TweetInFeed = ({ profile }) => {
-  const [tweetArr, setTweetArr] = useState();
+const Feed = ({ profile }) => {
+  const [snipArr, setSnipArr] = useState();
   const { Moralis, account } = useMoralis();
 
   useEffect(() => {
     async function getTweets() {
       try {
-        const Tweets = Moralis.Object.extend("Tweets");
-        const query = new Moralis.Query(Tweets);
+        const Snips = Moralis.Object.extend("Snips");
+        const query = new Moralis.Query(Snips);
         if (profile) {
-          query.equalTo("tweeterAcc", account);
+          query.equalTo("snipAcc", account);
         }
         const results = await query.find();
 
-        setTweetArr(results);
+        setSnipArr(results);
         console.log(results);
       } catch (error) {
         console.error(error);
@@ -32,28 +30,28 @@ const TweetInFeed = ({ profile }) => {
 
   return (
     <>
-      {tweetArr?.map((e) => {
+      {snipArr?.map((e) => {
         return (
           <>
-            <div className="feedTweet">
-              <img src={e.attributes.tweeterPfp ? e.attributes.tweeterPfp : defaultImgs[0]} className="profilePic"></img>
-              <div className="completeTweet">
+            <div className="feed">
+              <img src={e.attributes.snipPfp ? e.attributes.snipPfp : defaultImgs[0]} className="profilePic"></img>
+              <div className="completeSnip">
                 <div className="who">
-                {e.attributes.tweeterUserName.slice(0, 6)}
+                {e.attributes.snipUserName}
                   <div className="accWhen">{
-                        `${e.attributes.tweeterAcc.slice(0, 4)}...${e.attributes.tweeterAcc.slice(38)} · 
+                        `${e.attributes.snipAcc.slice(0,4)}...${e.attributes.snipAcc.slice(-5)} · 
                         ${e.attributes.createdAt.toLocaleString('en-us', { month: 'short' })}  
                         ${e.attributes.createdAt.toLocaleString('en-us', { day: 'numeric' })}
                         `  
                       }
                       </div>
                 </div>
-                <div className="tweetContent">
-                {e.attributes.tweetTxt}
-                {e.attributes.tweetImg && (
+                <div className="snipContent">
+                {e.attributes.snipTxt}
+                {e.attributes.snipImg && (
                         <img
-                          src={e.attributes.tweetImg}
-                          className="tweetImg"
+                          src={e.attributes.snipImg}
+                          className="snipImg"
                         ></img>
                       )}
                 </div>
@@ -80,4 +78,4 @@ const TweetInFeed = ({ profile }) => {
   );
 };
 
-export default TweetInFeed;
+export default Feed;

@@ -3,7 +3,7 @@ import "./Home.css";
 import { defaultImgs } from "../defaultimgs";
 import { TextArea, Icon } from "web3uikit";
 import { useState, useRef } from "react";
-import TweetInFeed from "../components/TweetInFeed";
+import Feed from "../components/Feed";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 
 const Home = () => {
@@ -15,11 +15,11 @@ const Home = () => {
   const inputFile = useRef(null);
   const [selectedFile, setSelectedFile] = useState();
   const [theFile, setTheFile] = useState();
-  const [tweet, setTweet] = useState();
+  const [snip, setSnip] = useState();
 
-  async function maticTweet() {
+  async function matic() {
 
-    if (!tweet) return;
+    if (!snip) return;
 
     let img;
     if (theFile) {
@@ -32,29 +32,29 @@ const Home = () => {
     }
 
     let options = {
-      contractAddress: "0x8E452D8573e2B1e8341D3f4aCC07939247cf99c6",
-      functionName: "addTweet",
+      contractAddress: "0xd9145CCE52D386f254917e481eB44e9943F39138",
+      functionName: "addSnip",
       abi: [{
         "inputs": [
           {
             "internalType": "string",
-            "name": "tweetTxt",
+            "name": "snipTxt",
             "type": "string"
           },
           {
             "internalType": "string",
-            "name": "tweetImg",
+            "name": "snipImg",
             "type": "string"
           }
         ],
-        "name": "addTweet",
+        "name": "addSnip",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
       }],
       params: {
-        tweetTxt: tweet,
-        tweetImg: img,
+        snipTxt: snip,
+        snipImg: img,
       },
       msgValue: Moralis.Units.ETH(1),
     }
@@ -62,7 +62,7 @@ const Home = () => {
     await contractProcessor.fetch({
       params: options,
       onSuccess: () => {
-        saveTweet();
+        saveSnip();
       },
       onError: (error) => {
         console.log(error.data.message)
@@ -72,27 +72,27 @@ const Home = () => {
   }
 
 
-  async function saveTweet() {
+  async function saveSnip() {
 
-    if(!tweet) return;
+    if(!snip) return;
 
-    const Tweets = Moralis.Object.extend("Tweets");
+    const Snips = Moralis.Object.extend("Snips");
 
-    const newTweet = new Tweets();
+    const newSnip = new Snips();
 
-    newTweet.set("tweetTxt", tweet);
-    newTweet.set("tweeterPfp", user.attributes.pfp);
-    newTweet.set("tweeterAcc", user.attributes.ethAddress);
-    newTweet.set("tweeterUserName", user.attributes.username);
+    newSnip.set("snipTxt", snip);
+    newSnip.set("snipPfp", user.attributes.pfp);
+    newSnip.set("snipAcc", user.attributes.ethAddress);
+    newSnip.set("snipUserName", user.attributes.username);
 
     if (theFile) {
       const data = theFile;
       const file = new Moralis.File(data.name, data);
       await file.saveIPFS();
-      newTweet.set("tweetImg", file.ipfs());
+      newSnip.set("snipImg", file.ipfs());
     }
 
-    await newTweet.save();
+    await newSnip.save();
     window.location.reload();
 
   }
@@ -111,21 +111,21 @@ const Home = () => {
     <>
     <div className="pageIdentify">Home</div>
       <div className="mainContent">
-        <div className="profileTweet">
+        <div className="profilepost">
           <img src={user.attributes.pfp ? user.attributes.pfp : defaultImgs[0]} className="profilePic"></img>
-          <div className="tweetBox">
+          <div className="postBox">
             <TextArea
               label=""
-              name="tweetTxtArea"
-              value="Say Something"
+              name="TxtArea"
+              placeholder="Say Something"
               type="text"
-              onChange={(e) => setTweet(e.target.value)}
+              onChange={(e) => setSnip(e.target.value)}
               width="95%"
             ></TextArea>
             {selectedFile && (
-              <img src={selectedFile} className="tweetImg"></img>
+              <img src={selectedFile} className="postImg"></img>
             )}
-            <div className="imgOrTweet">
+            <div className="imgOrPost">
               <div className="imgDiv" onClick={onImageClick}>
               <input
                   type="file"
@@ -134,18 +134,18 @@ const Home = () => {
                   onChange={changeHandler}
                   style={{ display: "none"}}
                 />
-                <Icon fill="#1DA1F2" size={20} svg="image"></Icon>
+                <Icon fill="#0ccdcd" size={20} svg="image"></Icon>
               </div>
-              <div className="tweetOptions">
-                <div className="tweet" onClick={saveTweet}>Post</div>
-                <div className="tweet" onClick={maticTweet} style={{ backgroundColor: "#8247e5" }}>
+              <div className="postOptions">
+                <div className="post" onClick={saveSnip}>Post</div>
+                <div className=" matic" onClick={matic} >
                   <Icon fill="#ffffff" size={20} svg="matic" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <TweetInFeed profile={false}/>
+        <Feed profile={false}/>
       </div>
     </>
   );

@@ -23,7 +23,6 @@
 }
 
 .profileName {
-    color: white;
     position: relative;
     top:-55px;
     left:40px;
@@ -40,7 +39,6 @@
 }
 
 .profileBio {
-    color: white;
     position: relative;
     top:-40px;
     left:40px;
@@ -49,13 +47,12 @@
 }
 
 .profileEdit {
-    color: white;
     position: relative;
     top:-160px;
     left:650px;
     font-size: 16px;
     font-weight: bold;
-    border: 0.5px solid white;
+    border: 0.5px solid black;
     width: 100px;
     justify-content: center;
     display:flex;
@@ -70,11 +67,10 @@
 .profileTabs {
     display: flex;
     justify-content: center;
-    color: white;
     font-weight: bold;
 }
 
 .profileTab {
     padding-bottom: 10px;  
-    border-bottom: 2px solid #1DA1F2;
+    border-bottom: 2px solid #1dc4f2;
 }
